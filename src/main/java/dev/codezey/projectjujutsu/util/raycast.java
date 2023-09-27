@@ -2,6 +2,7 @@ package dev.codezey.projectjujutsu.util;
 
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -42,6 +43,42 @@ public class raycast {
         final Vec3 endPos = startPos.add(new Vec3(entity.getLookAngle().x * length, entity.getLookAngle().y * length, entity.getLookAngle().z * length));
         return (HitResult)entity.level().clip(new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.SOURCE_ONLY, (Entity)entity));
     }
+    public static class Vec3H {
+        public Vec3 v;
+
+        public Vec3H(final Vec3 vec) {
+            this.v = vec;
+        }
+    }
+
+
+    public static boolean CheckLineBox(final Vec3 B1, final Vec3 B2, final Vec3 L1, final Vec3 L2) {
+        return CheckLineBox(B1, B2, L1, L2);
+    }
+
+
+    public static boolean isLookingAtMe(final Entity me, final LivingEntity player, final int limit) {
+        final Vec3 mv = me.position();
+        float angleToMe = (float)Math.atan2(mv.z - player.getZ(), mv.x - player.getX()) * 57.2958f;
+        float yaw = player.getYRot();
+        yaw %= 360.0f;
+        angleToMe %= 360.0f;
+        if (yaw < 0.0f) {
+            yaw += 360.0f;
+        }
+        if (angleToMe < 0.0f) {
+            angleToMe += 360.0f;
+        }
+        float boundUpper = (yaw + 90.0f + 90.0f - limit) % 360.0f;
+        float boundLower = (yaw + limit) % 360.0f;
+        if (boundLower < 0.0f) {
+            boundLower += 360.0f;
+        }
+        if (boundUpper < 0.0f) {
+            boundUpper += 360.0f;
+        }
+        return (angleToMe < boundUpper && angleToMe > boundLower) || (boundUpper < boundLower && (angleToMe < boundUpper || angleToMe > boundLower));
+    }
 
     public static Entity selectEntityNearCursor(final Player player, final double distance, final Level world, final Predicate<Entity> pred, final boolean nearAllowed) {
         Entity ret = null;
@@ -66,7 +103,7 @@ public class raycast {
                 if (nearAllowed && !intersects) {
                     final Vec3 center = aabb.getCenter();
                     final double dToLine = distanceToLine(eyes, sightEnd, center);
-                    if (dToLine >= minDToLine || blockBetween(eyes, e.getBoundingBox().getCenter(), e.level()) || !EffectUtil.isLookingAtMe(e, (LivingEntity)player, 45)) {
+                    if (dToLine >= minDToLine || blockBetween(eyes, e.getBoundingBox().getCenter(), e.level()) || !isLookingAtMe(e, (LivingEntity)player, 45)) {
                         continue;
                     }
                     minDToLine = dToLine;
@@ -75,6 +112,9 @@ public class raycast {
             }
         }
         return ret;
+    }
+    public static BlockPos toBlockPos(final Vec3 v) {
+        return new BlockPos(Mth.floor(v.x), Mth.floor(v.y), Mth.floor(v.z));
     }
 
     public static boolean blockBetween(final Vec3 e1, final Vec3 e2, final Level world) {
