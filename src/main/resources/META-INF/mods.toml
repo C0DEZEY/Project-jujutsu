@@ -6,9 +6,9 @@ license="Academic Free License v3.0"
 modId="jujutsu"
 version="1.0.0"
 displayName="Project Jujutsu"
-credits="Created using mod maker MCreator - https://mcreator.net/about"
-displayURL="https://mcreator.net"
-authors="Nicholas, MCreator"
+credits="Kain"
+displayURL="https://discord.gg/gTsYCbkjXm"
+authors="Codezey"
 
 [[dependencies.jujutsu]]
     modId="minecraft"

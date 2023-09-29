@@ -18,10 +18,8 @@ public class Jujutsu {
         dispatcher.register(
                 Commands.literal("jujutsu")
                         .then(Commands.argument("setMana", IntegerArgumentType.integer())
-
+                                //.executes(context -> ManaBarData.set(context))
                         )
         );
-
     }
-
 }
