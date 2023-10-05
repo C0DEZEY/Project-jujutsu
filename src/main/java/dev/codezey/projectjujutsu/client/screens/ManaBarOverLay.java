@@ -45,7 +45,7 @@ public class ManaBarOverLay {
         RenderSystem.setShaderColor(1, 1, 1, 1);
         if (true) {
             event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/manabar.png"), posX - 260, posY, 0, 0,  105, 54, 105, 54);
-            event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/fullbar.png"), posX - 260, posY, 0, 0,  mana, 54, 105, 54);
+            event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/fullbar.png"), posX - 260, posY, 0, 0,  mana +15, 54, 105, 54);
         }
         RenderSystem.depthMask(true);
         RenderSystem.defaultBlendFunc();
