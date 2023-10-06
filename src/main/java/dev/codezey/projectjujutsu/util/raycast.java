@@ -14,6 +14,8 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -131,5 +133,27 @@ public class raycast {
             return false;
         }
         return false;
+    }
+public static boolean getPredicate(MAHOU_SELECTION s, Entity e, Player player) {
+        return getPredicate(new HashSet<>(Collections.singleton(s)), e, player);
+    }
+  public static boolean getPredicate(HashSet<MAHOU_SELECTION> set, Entity e, Player player) {
+if (set.contains(MAHOU_SELECTION.SELECTIVE_DISPLACEMENT))
+      return (e != player);
+ if (set.contains(MAHOU_SELECTION.SCROLL_PROJECTION))
+    return (e != player && (e instanceof LivingEntity || e instanceof net.minecraft.world.entity.projectile.ThrownTrident || e instanceof net.minecraft.world.entity.decoration.ItemFrame));
+  if (set.contains(MAHOU_SELECTION.SCROLL_GEAS))
+       return (e != player && (e instanceof LivingEntity || e instanceof net.minecraft.world.entity.item.ItemEntity));
+   if (set.size() > 0) {
+     return (e != player && e instanceof LivingEntity);
+   }
+   return false;
+    }
+
+    public enum MAHOU_SELECTION
+    {
+        SELECTIVE_DISPLACEMENT,
+        SCROLL_PROJECTION,
+        SCROLL_GEAS,
     }
 }
