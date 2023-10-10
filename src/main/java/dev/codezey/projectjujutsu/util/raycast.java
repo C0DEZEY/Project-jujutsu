@@ -6,19 +6,40 @@ import net.minecraft.world.entity.LivingEntity;
 
 import net.minecraft.world.level.ClipContext;
 
+import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
+
+import java.util.List;
 
 
 public class raycast {
 
 
 
-    public static boolean rayTraceEyes(final LivingEntity entity, final double length) {
-        final Vec3 startPos = new Vec3(entity.getX(), entity.getY() + entity.getEyeHeight(), entity.getZ());
-        final Vec3 endPos = startPos.add(new Vec3(entity.getLookAngle().x * length, entity.getLookAngle().y * length, entity.getLookAngle().z * length));
-        HitResult hitResult = (HitResult) entity.level().clip(new ClipContext(startPos, endPos, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, (Entity) entity));
-        return hitResult.getType() != HitResult.Type.MISS;
+    public static Entity rayTraceEyes(final LivingEntity entity, final double length) {
+        Vec3 start = entity.getEyePosition(1.0F); // Get the entity's eye position
+        Vec3 lookVec = entity.getLookAngle(); // Get the entity's look vector
+        Vec3 end = start.add(lookVec.x * length, lookVec.y * length, lookVec.z * length);
+
+        AABB rayAABB = new AABB(start, end);
+
+        Level world = entity.getCommandSenderWorld();
+        List<Entity> entities = world.getEntities(entity, rayAABB, e -> e != entity);
+
+        Entity closestEntity = null;
+        double closestDistance = Double.MAX_VALUE;
+
+        for (Entity e : entities) {
+            double distance = start.distanceToSqr(e.position().add(0, e.getEyeHeight(), 0));
+            if (distance < closestDistance) {
+                closestEntity = e;
+                closestDistance = distance;
+            }
+        }
+
+        return closestEntity;
     }
 
 
