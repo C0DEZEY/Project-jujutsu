@@ -17,7 +17,7 @@ import java.util.List;
 public class raycast {
 
 
-
+    // To raycast just call the function rayTraceEyes and input the player (Minecraft.Getinstance().player or whatever) then input the distance and it will reutrn the target!
     public static Entity rayTraceEyes(final LivingEntity entity, final double length) {
         Vec3 start = entity.getEyePosition(1.0F); // Get the entity's eye position
         Vec3 lookVec = entity.getLookAngle(); // Get the entity's look vector
@@ -36,6 +36,8 @@ public class raycast {
             if (distance < closestDistance) {
                 closestEntity = e;
                 closestDistance = distance;
+            } else {
+                closestEntity = null;
             }
         }
 

@@ -5,7 +5,7 @@ import net.minecraft.world.entity.Entity;
 
 
 public class glow {
-
+ // WIP :skull:
     public static void setglow(Entity entity) {
         entity.setGlowingTag(true);
     }

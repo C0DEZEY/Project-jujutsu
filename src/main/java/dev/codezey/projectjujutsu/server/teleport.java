@@ -17,7 +17,7 @@ public class teleport {
             return;
         {
             Entity _ent = entity;
-            _ent.teleportTo(x, y , z);
+            _ent.teleportTo(x, y, z);
             if (_ent instanceof ServerPlayer _serverPlayer)
                 _serverPlayer.connection.teleport(x, y, z, _ent.getYRot(), _ent.getXRot());
         }
