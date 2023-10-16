@@ -1,13 +1,9 @@
 
-Source installation information for modders
--------------------------------------------
-This code follows the Minecraft Forge installation methodology. It will apply
-some small patches to the vanilla MCP source code, giving you and it access 
-to some of the data and functions you need to build a successful mod.
+# Project Jujutsu 
 
-Note also that the patches are built against "un-renamed" MCP source code (aka
-SRG Names) - this means that you will not be able to read them directly against
-normal code.
+A Forge 1.20.1 Minecraft Mod. Based off the popular anime Jujutsu Kaisen. 
+
+
 
 Setup Process:
 ==============================
@@ -31,16 +27,46 @@ run `gradlew --refresh-dependencies` to refresh the local cache. `grps://mcforge
                                                                     LexManos' Install Video: https://www.youtube.com/watch?v=8VEdtQLuLO0  adlew clean` to reset everything
 {this does not affect your code} and then start the process again.
 
-Mapping Names:
-=============================
-By default, the MDK is configured to use the official mapping names from Mojang for methods and fields 
-in the Minecraft codebase. These names are covered by a specific license. All modders should be aware of this
-license, if you do not agree with it you can change your mapping names to other crowdsourced names in your 
-build.gradle. For the latest license text, refer to the mapping file itself, or the reference copy here:
-https://github.com/MinecraftForge/MCPConfig/blob/master/Mojang.md
 
-Additional Resources: 
-=========================
-Community Documentation: htt
-Forge Forum: https://forums.minecraftforge.net/  
-Forge Discord: https://discord.gg/UvedJ9m  
+
+
+## Todo List 
+
+- Add Custom Animations 
+
+- Add more Moves 
+
+
+
+
+## Custom Utilities 
+
+- Raycasting - Simply use rayTraceEyes From the Raycast file to find if a Entity is looking at another Entity Speficy The Entity you want to start the Raycast From and the end distance. Note The longer the Ray the Lagger it will become. 
+
+- Chat - To show a message in chat Simply use the Chat Utilitie. Simply do Chat("Any message here").
+
+- ShowActionBar - Create a Custom Action bar above the player healthbar displaying text speifcy the Entity and the Text .
+
+- Glow - Simply use setglow and unglow to make a Entity Glow. 
+
+- Custom Keybinds - Create a New Keybind in the file Keybindings by following the intructions then add it to the EN lang file. 
+
+- Custom Commands - Copy and paste the template Code int he Commands folder which will allow you to create a Command. 
+
+## Importent files 
+
+- Server - Anything in the server file is to be exucuted on the server side of things 
+
+- NetWorking - Anything in this File is Client to Server (Packets). 
+
+Every file has a purpose don't create 1 millon files. Please never commit directly to the Repo Create Branches and Test them for bugs before commiting code. 
+
+## Authors
+
+- [@Codezey [Lead Developer]](https://www.github.com/c0dezey)
+
+- [@Kain [Owner]]
+
+- [@LegoMyLegoEgo [Developer]](https://www.github.com/GoodTimeWithMatt)
+
+- [@EpicMidToker [Modler]]
