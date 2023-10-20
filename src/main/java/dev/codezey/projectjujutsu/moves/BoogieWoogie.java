@@ -52,10 +52,14 @@ public class BoogieWoogie {
                         ManaBarData.remove(10);
                         util.ShowActionBar(mc.player, "§a Swapped");
                     } else {
+
                         SwapMessage.setTwoentitys(true);
                         SwapMessage.FirstEntity(Target1);
+
                         Main.PACKET_HANDLER.sendToServer(new SwapMessage(1, 0));
+
                         ManaBarData.remove(10);
+
                         util.ShowActionBar(mc.player, "§a Swapped 2");
 
                     }
@@ -74,9 +78,3 @@ public class BoogieWoogie {
     }
 
 
-
-// ManaBarData.remove(10);
-//  Main.PACKET_HANDLER.sendToServer(new SwapMessage(0, 0));
-//  util.ShowActionBar(mc.player, "No Targets Found.");
-
-// SwapMessage.SetSecondEntity(true);

@@ -81,7 +81,7 @@ import dev.codezey.projectjujutsu.Main;
                 double x2 = target.getX();
                 double y2 = target.getY();
                 double z2 = target.getZ();
-
+                
                 teleport.TeleportTo(firstentity.getX(),firstentity.getY(),firstentity.getZ(),target);
                 teleport.TeleportTo(x2,y2,z2,firstentity);
 

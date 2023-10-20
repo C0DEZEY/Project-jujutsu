@@ -23,17 +23,18 @@ public class raycast {
         Vec3 lookVec = entity.getLookAngle(); // Get the entity's look vector
         Vec3 end = start.add(lookVec.x * length, lookVec.y * length, lookVec.z * length);
 
-        AABB rayAABB = new AABB(start, end);
+        AABB rayAABB = new AABB(start, end); // Create a new AABB Ray. 
 
         Level world = entity.getCommandSenderWorld();
-        List<Entity> entities = world.getEntities(entity, rayAABB, e -> e != entity);
+        List<Entity> entities = world.getEntities(entity, rayAABB, e -> e != entity); // Create a list of each entity that it could have hit. 
 
-        Entity closestEntity = null;
-        double closestDistance = Double.MAX_VALUE;
+        Entity closestEntity = null; // Define closest entity 
+
+        double closestDistance = Double.MAX_VALUE; // Get the max value in decimal form 
 
         for (Entity e : entities) {
             double distance = start.distanceToSqr(e.position().add(0, e.getEyeHeight(), 0));
-            if (distance < closestDistance) {
+            if (distance <= closestDistance) { 
                 closestEntity = e;
                 closestDistance = distance;
             } else {
