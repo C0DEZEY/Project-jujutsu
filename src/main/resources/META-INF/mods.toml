@@ -1,0 +1,22 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="Academic Free License v3.0"
+
+[[mods]]
+modId="jujutsu"
+version="1.0.0"
+displayName="Project Jujutsu"
+credits="Kain"
+displayURL="https://discord.gg/gTsYCbkjXm"
+authors="Codezey"
+
+[[dependencies.jujutsu]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1]"
+    ordering="NONE"
+    side="BOTH"
+
+
+
+
