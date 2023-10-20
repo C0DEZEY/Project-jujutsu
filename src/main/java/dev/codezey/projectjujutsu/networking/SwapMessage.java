@@ -75,17 +75,21 @@ import dev.codezey.projectjujutsu.Main;
             }
 
             if (type == 1) {
-            if(twoentitys) {
-                Entity target = raycast.rayTraceEyes(player,50);
 
+            if(twoentitys) {
+                // get the second target (assuming your looking at it)
+                Entity target = raycast.rayTraceEyes(player,50);
+                if (target != null) {
+                // Save the target pos. 
                 double x2 = target.getX();
                 double y2 = target.getY();
-                double z2 = target.getZ();
+                double z2 = target.getZ(); 
                 
                 teleport.TeleportTo(firstentity.getX(),firstentity.getY(),firstentity.getZ(),target);
                 teleport.TeleportTo(x2,y2,z2,firstentity);
-
+                } 
             }
+
             }
         }
 
