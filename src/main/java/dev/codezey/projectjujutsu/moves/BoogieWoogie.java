@@ -22,11 +22,15 @@ public class BoogieWoogie {
 
     public static void run() {
         if (!toggled) {
+
+            // Grabs the First target.
             Minecraft mc = Minecraft.getInstance();
             Player player = mc.player;
             Target1 = getEnemy(player);
             if (Target1 != null) {
                 util.ShowActionBar(mc.player, "§a Target 1 selected");
+            } else {
+                Target1 = getEnemy(player);
             }
             toggled = true;
         }

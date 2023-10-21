@@ -4,7 +4,7 @@ public class HotBarData {
     private static int HotBarSlot = 0;
     private static boolean ActiveHotBar = false; 
     private static int HotBarSize = 4; 
-    private static int Moves = {0,0,0,0}; // Create a Array of all the moves using ID's 
+    private static int[] Moves = new int[]{0, 0, 0, 0}; // Create a Array of all the moves using ID's
  
 
 
@@ -20,5 +20,8 @@ public class HotBarData {
         return ActiveHotBar;
     }
     
-    
+    public static void SetId(int id, int slot) {
+        Moves[slot] = id;
+    }
+
 }
