@@ -5,33 +5,31 @@ package dev.codezey.projectjujutsu.networking;
 import java.util.function.Supplier;
 
 
-import dev.codezey.projectjujutsu.util.util;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-
 import net.minecraft.world.level.Level;
 import net.minecraft.network.FriendlyByteBuf;
 import dev.codezey.projectjujutsu.util.raycast;
-
 import dev.codezey.projectjujutsu.server.teleport;
 import dev.codezey.projectjujutsu.Main;
 
-    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
+
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public class SwapMessage {
         public static boolean twoentitys = false;
         public static Entity firstentity = null;
 
-        public static void FirstEntity(Entity entity) {
-            firstentity = entity;
-        }
+
 
         public static void setTwoentitys(boolean t) {
             twoentitys = t;
         }
+
+
 
         public static Entity target = null;
         int type, pressedms;
@@ -62,8 +60,6 @@ import dev.codezey.projectjujutsu.Main;
 
         public static void pressAction(Player player, int type) {
             Level world = player.level();
-
-
             // security measure to prevent arbitrary chunk generation
             if (!world.hasChunkAt(player.blockPosition()))
 
@@ -71,6 +67,7 @@ import dev.codezey.projectjujutsu.Main;
             if (type == 0) {
                 if (!twoentitys) {
                     Entity target = raycast.rayTraceEyes(player, 50);
+
                     double x = player.getX();
                     double y = player.getY();
                     double z = player.getZ();
@@ -79,17 +76,7 @@ import dev.codezey.projectjujutsu.Main;
                     // Teleport the Target to the Player pos BEFORE the teleport
                     teleport.TeleportTo(x, y, z, target);
                 } else {
-                    Entity target = raycast.rayTraceEyes(player, 50);
-
-                    if (target != null) {
-                        // Save the target pos.
-                        double x2 = target.getX();
-                        double y2 = target.getY();
-                        double z2 = target.getZ();
-
-                        teleport.TeleportTo(firstentity.getX(), firstentity.getY(), firstentity.getZ(), target);
-                        teleport.TeleportTo(x2,y2,z2,firstentity);
-                    }
+                    teleport.SwapEntity(player);
                 }
             }
         }
