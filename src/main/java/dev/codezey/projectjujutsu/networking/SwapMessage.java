@@ -60,7 +60,6 @@ import dev.codezey.projectjujutsu.Main;
 
         public static void pressAction(Player player, int type) {
             Level world = player.level();
-            // security measure to prevent arbitrary chunk generation
             if (!world.hasChunkAt(player.blockPosition()))
 
                 return;
@@ -76,6 +75,8 @@ import dev.codezey.projectjujutsu.Main;
                     // Teleport the Target to the Player pos BEFORE the teleport
                     teleport.TeleportTo(x, y, z, target);
                 } else {
+
+                    // Use Swap Entity to raycast the second entity and get the other one from the BoogieWoogie File. 
                     teleport.SwapEntity(player);
                 }
             }
