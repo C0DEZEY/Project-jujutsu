@@ -53,7 +53,7 @@ public class teleport {
                 double y2 = e2.getY();
                 double z2 = e2.getZ();
                e2.teleportTo(x, y, z);
-               //e1.teleportTo(x2,y2,z2);
+
                 List<Entity> entities = player.level().getEntities(player, player.getBoundingBox().inflate(50));
             for (Entity e : entities) {
                 if (e.getId() == id) {
