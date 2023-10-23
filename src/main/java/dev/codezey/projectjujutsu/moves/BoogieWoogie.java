@@ -12,7 +12,7 @@ import dev.codezey.projectjujutsu.util.util;
 
 
 public class BoogieWoogie {
-    private static Entity Target1 = null;
+    public static Entity Target1;
     private static Entity Target2 = null;
     public static Entity getEnemy(Player player) {
         return raycast.rayTraceEyes(player, 50);
@@ -58,12 +58,8 @@ public class BoogieWoogie {
                     } else {
 
                         SwapMessage.setTwoentitys(true);
-                        SwapMessage.FirstEntity(Target1);
-
-                        Main.PACKET_HANDLER.sendToServer(new SwapMessage(1, 0));
-
+                        Main.PACKET_HANDLER.sendToServer(new SwapMessage(0, 0));
                         ManaBarData.remove(10);
-
                         util.ShowActionBar(mc.player, "§a Swapped 2");
 
                     }
