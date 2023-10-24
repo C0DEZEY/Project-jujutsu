@@ -1,4 +1,3 @@
-
 # Project Jujutsu 
 
 A Forge 1.20.1 Minecraft Mod. Based off the popular anime Jujutsu Kaisen. 
