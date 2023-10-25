@@ -45,7 +45,7 @@ public class KeyBindMessages {
         if (type == 1) {
                 // Type 1 (On Let go)
 
-        BoogieWoogie.set();
+            BoogieWoogie.set();
 
         }
     }

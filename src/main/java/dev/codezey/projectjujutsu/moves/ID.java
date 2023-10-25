@@ -4,18 +4,30 @@ import dev.codezey.projectjujutsu.networking.packets.KeyBindMessages;
 import net.minecraft.client.Minecraft;
 
 public class ID {
-public static String IdToMove(int id) {
+    // For Every Move We Create we can use this to return the data of the move 
+
+public static IdToMove(int id) {
+    String imgPath = "jujutsu:textures/screens/icons/";
+    String imgName = "";
+    String Name = "Null";
+   
     if (id == 1) {
-        return ("Boogie Woogie");
+        imgName = "boogiewoogie";
+        Name = "Boogie Woogie"; 
+
     } else if (id == 2) {
-        return ("Limitless"); 
-    } else {
-        return ("Nil"); 
-    }
+       imgName = "limitless";
+       Name = "Limit Less";
+
+    } 
+    String img = imgPath + imgName + ".png";
+    Array = new String[]{img,Name};
+    return array; 
 }
-// Keep Create else if statments foer each move listed.  ^ 
+// Keep Create else if statments for each move listed.  ^ 
 
     // If the Code is to be ran when the key is just press then use Executed ID 
+    // Use this for each new move. This may get a rework later on in time. 
 public static void executeId(int id) {
 
 }
