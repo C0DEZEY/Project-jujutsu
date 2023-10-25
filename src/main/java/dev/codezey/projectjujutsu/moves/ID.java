@@ -1,5 +1,8 @@
 package dev.codezey.projectjujutsu.moves;
 
+import dev.codezey.projectjujutsu.networking.packets.KeyBindMessages;
+import net.minecraft.client.Minecraft;
+
 public class ID {
 public static String IdToMove(int id) {
     if (id == 1) {
