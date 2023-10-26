@@ -30,7 +30,7 @@ public class BoogieWoogie {
             if (Target1 != null) {
                 util.ShowActionBar(mc.player, "§a Target 1 selected");
             } else {
-                Target1 = getEnemy(player);
+                util.ShowActionBar(mc.player, "§c No target found.");
             }
             toggled = true;
         }

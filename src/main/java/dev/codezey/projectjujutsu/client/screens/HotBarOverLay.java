@@ -2,6 +2,7 @@ package dev.codezey.projectjujutsu.client.screens;
 
 import dev.codezey.projectjujutsu.client.HotBarData;
 import dev.codezey.projectjujutsu.client.ManaBarData;
+import dev.codezey.projectjujutsu.moves.ID;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -43,18 +44,33 @@ public class HotBarOverLay {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
         RenderSystem.setShaderColor(1, 1, 1, 1);
-        if (true) {
+        if (true) {        
+                        // render the hotbar itself 
                         int i;
                         for (i=0; i < HotBarData.ReturnSize(); i++) {
-                            int xp = i * 21 + 1;
+                            xp = i * 21 + 1;
                             event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/hotbar.png"), 50 + xp, h - 22, 0, 0, 21, 21, 21, 21);
                         }
+
+                        // Renders the active slot overlay. 
                         if (HotBarData.ReturnIsActive() == true) {
-                           int slot = HotBarData.ReturnSlot();
-                           int xpos = slot * 21 + 1;
+                            slot = HotBarData.ReturnSlot();
+                            xpos = slot * 21 + 1;
                             event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/active.png"), xpos, h - 22, 0, 0, 21, 21, 21, 21);
                         }
 
+                        // render the items in the hotbar. 
+
+                        for (i=0; i <HotBarData.ReturnSize(); i++) {
+                           int id = HotBarData.ReturnMove(i);
+                           String img = ID.IdToMove(id, 0);  
+                           xpos = i * 21 + 1; 
+                           if (id !=0) { // Check to render the item 
+                            event.getGuiGraphics().blit(new ResourceLocation(img), xpos, h - 22, 0, 0, 21, 21, 21, 21);
+                           }
+                        }
+                        
+                        
 
         }
         RenderSystem.depthMask(true);
