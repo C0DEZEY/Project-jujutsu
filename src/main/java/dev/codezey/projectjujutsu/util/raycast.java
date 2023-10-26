@@ -8,10 +8,12 @@ import net.minecraft.world.level.ClipContext;
 
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.Vec3;
 
 import java.util.List;
+import java.util.Optional;
 
 
 public class raycast {
@@ -19,26 +21,34 @@ public class raycast {
 
     // To raycast just call the function rayTraceEyes and input the player (Minecraft.Getinstance().player or whatever) then input the distance and it will reutrn the target!
     public static Entity rayTraceEyes(final LivingEntity entity, final double length) {
-        Vec3 start = entity.getEyePosition(1.0F); // Get the entity's eye position
-        Vec3 lookVec = entity.getLookAngle(); // Get the entity's look vector
+        Vec3 start = entity.getEyePosition(1.0F);
+        Vec3 lookVec = entity.getLookAngle();
         Vec3 end = start.add(lookVec.x * length, lookVec.y * length, lookVec.z * length);
 
-        AABB rayAABB = new AABB(start, end); // Create a new AABB Ray. 
-
         Level world = entity.getCommandSenderWorld();
-        List<Entity> entities = world.getEntities(entity, rayAABB, e -> e != entity); // Create a list of each entity that it could have hit. 
 
-        Entity closestEntity = null; // Define closest entity 
+        BlockHitResult blockHitResult = world.clip(new ClipContext(start, end, ClipContext.Block.COLLIDER, ClipContext.Fluid.NONE, entity));
+        Vec3 rayEnd = blockHitResult.getType() != HitResult.Type.MISS ? blockHitResult.getLocation() : end;
 
-        double closestDistance = Double.MAX_VALUE; // Get the max value in decimal form 
+        List<Entity> entities = world.getEntities(entity, entity.getBoundingBox().expandTowards(lookVec.scale(length)).inflate(1.0), e -> e != entity);
+
+        Entity closestEntity = null;
+        double closestDistance = Double.MAX_VALUE;
 
         for (Entity e : entities) {
-            double distance = start.distanceToSqr(e.position().add(0, e.getEyeHeight(), 0));
-            if (distance <= closestDistance) { 
-                closestEntity = e;
-                closestDistance = distance;
-            } else {
-                closestEntity = null;
+            Vec3 entityVec = e.position().add(0, e.getEyeHeight(), 0);
+            double distance = start.distanceToSqr(entityVec);
+
+            // Calculate the intersection of the ray with the entity's bounding box
+            AABB entityBox = e.getBoundingBox();
+            Optional<Vec3> intersection = entityBox.clip(start, rayEnd);
+
+            if (intersection.isPresent()) {
+                double intersectionDistance = start.distanceToSqr(intersection.get());
+                if (intersectionDistance < closestDistance) {
+                    closestEntity = e;
+                    closestDistance = intersectionDistance;
+                }
             }
         }
 

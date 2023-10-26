@@ -51,7 +51,7 @@ public class HotBarOverLay {
                         }
                         if (HotBarData.ReturnIsActive() == true) {
                            int slot = HotBarData.ReturnSlot();
-                           int xpos = slot * 21 + 1 + 50;
+                           int xpos = slot * 21 + 1;
                             event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/active.png"), xpos, h - 22, 0, 0, 21, 21, 21, 21);
                         }
 

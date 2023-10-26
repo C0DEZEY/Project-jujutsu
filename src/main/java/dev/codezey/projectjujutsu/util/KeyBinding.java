@@ -47,16 +47,12 @@ public class KeyBinding {
     }
 };
     
-public static final KeyMapping HB_KEY = new KeyMapping(KEY_SCROLL_HOTBAR. KeyConflictContext.IN_GAME,
-InputConstants.Type.KEYSYM,GLFW.GLFW_KEY_M
-) {
 
-};
 
     @SubscribeEvent
     public static void registerKeyMappings(RegisterKeyMappingsEvent event) {
         event.register(BW_KEY);
-        event.register(HB_KEY);
+        ///event.register(HB_KEY);
         // Make sure to register your Keybind
     }
 
@@ -66,7 +62,7 @@ InputConstants.Type.KEYSYM,GLFW.GLFW_KEY_M
         public static void onClientTick(TickEvent.ClientTickEvent event) {
             if (Minecraft.getInstance().screen == null) {
                 BW_KEY.consumeClick();
-                HB_KEY.consumeClick();
+               // HB_KEY.consumeClick();
                 // Also makesure to Comsume click (This Checks Every tick) if your keybind has been pressed
             }
         }
