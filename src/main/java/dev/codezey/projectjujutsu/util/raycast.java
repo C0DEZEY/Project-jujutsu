@@ -37,7 +37,6 @@ public class raycast {
 
         for (Entity e : entities) {
             Vec3 entityVec = e.position().add(0, e.getEyeHeight(), 0);
-            double distance = start.distanceToSqr(entityVec);
 
             // Calculate the intersection of the ray with the entity's bounding box
             AABB entityBox = e.getBoundingBox();
