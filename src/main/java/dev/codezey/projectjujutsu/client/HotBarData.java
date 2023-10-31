@@ -21,8 +21,7 @@ public class HotBarData {
     }
     
     public static int ReturnMove(int i) {
-        // Subtract 1 Cuz index starts at 0 instead of 1 
-        int t = Moves[i - 1];
+        int t = Moves[i];
         return t; 
     }
 

@@ -6,25 +6,22 @@ import net.minecraft.client.Minecraft;
 public class ID {
     // For Every Move We Create we can use this to return the data of the move 
 
-public static String IdToMove(int id, int type) {
-    String imgPath = "jujutsu:textures/screens/icons/";
+public static String IdToMove(int id) {
     String imgName = "";
-    String Name = "Null";
-   
-    if (id == 1) {
+    if ((int) id == 0) {
+        imgName = "null";
+     } else if ((int) id == 1) {
         imgName = "boogiewoogie";
-        Name = "Boogie Woogie"; 
 
-    } else if (id == 2) {
+    } else if ((int) id == 2) {
        imgName = "limitless";
-       Name = "Limit Less";
-    } 
-    String img = imgPath + imgName + ".png";
-   if (type == 1){
-       return Name;
-   } else {
-       return img;
-   }
+    } else {
+        imgName = "null";
+    }
+
+    return (String) imgName;
+    
+    
 }
 // Keep Create else if statments for each move listed.  ^ 
 
