@@ -31,9 +31,16 @@ run `gradlew --refresh-dependencies` to refresh the local cache. `grps://mcforge
 
 ## Todo List 
 
-- Add Custom Animations 
+ ### Moves 
+- [x] Booige Woogie 
+- [] Limitless
+- [ ] More Coming soon
 
-- Add more Moves 
+### Utilty 
+- [x] RayCasting
+- [] Keybinds
+- [ ] More Coming soon
+### 
 
 
 

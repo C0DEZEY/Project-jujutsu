@@ -49,9 +49,16 @@ public class HotBarOverLay {
                         int i;
                         for (i=0; i < HotBarData.ReturnSize(); i++) {
                             int xp = i * 21 + 1;
-                            event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/hotbar.png"), 50 + xp, h - 22, 0, 0, 21, 21, 21, 21);
-                        }
+                            // Render the items in the hotbar first (So its ontop)
+                            int id = HotBarData.ReturnMove(i);
+                            String imgName = ID.IdToMove(id);
+                            event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/icons/" + imgName + ".png"), 50 + xp, h - 22, 0, 0, 19, 19, 19, 19);
 
+                            // Render the hotbar Backround
+                            event.getGuiGraphics().blit(new ResourceLocation("jujutsu:textures/screens/hotbar.png"), 50 + xp, h - 22, 0, 0, 21, 21, 21, 21);
+                            
+                        }
+                        
                         // Renders the active slot overlay. 
                         if (HotBarData.ReturnIsActive() == true) {
                             int slot = HotBarData.ReturnSlot();
