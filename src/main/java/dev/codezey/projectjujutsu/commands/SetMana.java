@@ -13,8 +13,8 @@ import dev.codezey.projectjujutsu.client.ManaBarData;
 public class SetMana {
     @SubscribeEvent
     public static void registerCommand(RegisterCommandsEvent event) {
-        event.getDispatcher().register(Commands.literal("Setmana").requires(s -> s.hasPermission(2)).then(Commands.argument("set", DoubleArgumentType.doubleArg()).executes(arguments -> {
-            int mana = (int) DoubleArgumentType.getDouble(arguments, "set");
+        event.getDispatcher().register(Commands.literal("setmana").requires(s -> s.hasPermission(2)).then(Commands.argument("set", DoubleArgumentType.doubleArg()).executes(arguments -> {
+            int mana = (int) DoubleArgumentType.getDouble(arguments, "set mana");
             ManaBarData.set(mana);
             return 0;
         })));

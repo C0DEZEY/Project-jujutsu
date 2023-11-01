@@ -30,7 +30,7 @@ public class BoogieWoogie {
             if (Target1 != null) {
                 util.ShowActionBar(mc.player, "§a Target 1 selected");
             } else {
-                Target1 = getEnemy(player);
+                util.ShowActionBar(mc.player, "§c No target found.");
             }
             toggled = true;
         }
@@ -54,13 +54,13 @@ public class BoogieWoogie {
                         Main.PACKET_HANDLER.sendToServer(new SwapMessage(0, 0));
                         // Remove Mana After use and return any errors.
                         ManaBarData.remove(10);
-                        util.ShowActionBar(mc.player, "§a Swapped");
+                        util.ShowActionBar(mc.player, "§a Swapped.");
                     } else {
 
                         SwapMessage.setTwoentitys(true);
                         Main.PACKET_HANDLER.sendToServer(new SwapMessage(0, 0));
                         ManaBarData.remove(10);
-                        util.ShowActionBar(mc.player, "§a Swapped 2");
+                        util.ShowActionBar(mc.player, "§a Swapped.");
 
                     }
                 } else {
