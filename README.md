@@ -33,12 +33,14 @@ run `gradlew --refresh-dependencies` to refresh the local cache. `grps://mcforge
 
  ### Moves 
 - [x] Booige Woogie 
-- [] Limitless
+- [Wip] Limitless
 - [ ] More Coming soon
 
 ### Utilty 
 - [x] RayCasting
-- [] Keybinds
+- [X] Keybinds
+- [X] HotBar 
+- [WiP] HotBar Dsaving
 - [ ] More Coming soon
 ### 
 
