@@ -8,7 +8,7 @@ public class ID {
 // Please enter the IMG file name as the move for it to return this should be a pretty long list 
 // Please note this will be changed later on to a JSON File but this works for RN. 
 public static String IdToMove(int id) {
-    String imgName = "";
+    String imgName = "null";
     if ((int) id == 0) {
         imgName = "null";
      } else if ((int) id == 1) {
