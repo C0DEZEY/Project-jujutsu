@@ -2,7 +2,6 @@ package dev.codezey.projectjujutsu.events;
 
 
 import dev.codezey.projectjujutsu.Main;
-import dev.codezey.projectjujutsu.util.KeyBinding;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

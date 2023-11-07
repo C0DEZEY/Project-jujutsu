@@ -1,7 +1,6 @@
 package dev.codezey.projectjujutsu.util;
 
 import com.mojang.blaze3d.platform.InputConstants;
-import dev.codezey.projectjujutsu.Main;
 import dev.codezey.projectjujutsu.networking.packets.KeyBindMessages;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
@@ -14,7 +13,7 @@ import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = {Dist.CLIENT})
-public class KeyBinding {
+public class BoogieWoogie {
 
     // To Create a Keybind Please Follow this template belove and go Into Resources -> Assests - > Juju > Lang and add the proper Keybind (Copy paste)
     public static final String KEY_CATRGORY_JUJUTSU = "key.category.Jujutsu.jujutsu";

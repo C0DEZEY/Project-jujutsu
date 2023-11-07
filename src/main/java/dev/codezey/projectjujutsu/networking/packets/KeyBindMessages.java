@@ -1,6 +1,7 @@
 package dev.codezey.projectjujutsu.networking.packets;
 
 import dev.codezey.projectjujutsu.Main;
+import dev.codezey.projectjujutsu.client.HotBarData;
 import dev.codezey.projectjujutsu.moves.BoogieWoogie;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;
@@ -38,15 +39,22 @@ public class KeyBindMessages {
         Level world = entity.level();
         if (!world.hasChunkAt(entity.blockPosition()))
             return;
+
         if (type == 0) {
             // Type 0 (On Pressed)
+
             BoogieWoogie.run();
         }
         if (type == 1) {
                 // Type 1 (On Let go)
 
             BoogieWoogie.set();
-
+        }
+        if (type == 2) {
+            HotBarData.setActive(true);
+        }
+        if (type == 3) {
+            HotBarData.setActive(false);
         }
     }
 
